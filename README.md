@@ -1,7 +1,7 @@
 1. clone
 2. enter folder
 3. open termital
-4. run commans 
+4. run command to auto install Ninja, CMake, vcpkg
 ```
 seewkInit
 ```
