@@ -1,4 +1,4 @@
 @echo off
 cd /d "%~dp0"
-.\seewk.exe install
+.\seewk-init.exe install
 pause
