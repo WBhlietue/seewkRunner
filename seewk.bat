@@ -10,12 +10,16 @@ if "%IS_INIT%"=="" (
     set IS_INIT=1
     if "%1"=="start" goto startProjInit
     if "%1"=="make" goto makeInit
+    if "%1"=="run" goto runInit
+    if "%1"=="compile" goto compileInit
     cmd /k
     endlocal
 )
 chcp 65001
 if "%1"=="start" goto startProj
+if "%1"=="run" goto run
 if "%1"=="make" goto make
+if "%1"=="compile" goto compile
 goto :EOF
 
 :startProjInit
@@ -30,6 +34,23 @@ goto :EOF
 
 :startProj
 ninja -C build && build\Test.exe
+goto :EOF
+
+:compile
+ninja -C build
+goto :EOF
+:compileInit
+ninja -C build
+cmd /k
+goto :EOF
+
+
+:run
+build\Test.exe 
+goto :EOF
+:runInit
+build\Test.exe 
+cmd /k
 goto :EOF
 
 :make
