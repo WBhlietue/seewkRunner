@@ -2,7 +2,9 @@
 
 @REM set "SEEWK_DIR=%~dp0"
 @REM cd /d "%SEEWK_DIR%"
-set vclocation="%~dp0vcpkg\scripts\buildsystems\vcpkg.cmake"
+@REM set VCPKG_ROOT="%~dp0vcpkg\scripts\buildsystems\vcpkg.cmake"
+if "%VCPKG_ROOT%"=="" set VCPKG_ROOT=%~dp0vcpkg
+
 if "%IS_INIT%"=="" (
     setlocal enabledelayedexpansion
     set "initURL=C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvarsall.bat"
@@ -28,7 +30,7 @@ cmd /k
 goto :EOF
 
 :makeInit
-call cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=%vclocation% -DVCPKG_TARGET_TRIPLET=x64-windows-static -DCMAKE_BUILD_TYPE=Release -G Ninja
+call cmake -B build -S . -DVCPKG_TARGET_TRIPLET=x64-windows-static -DCMAKE_BUILD_TYPE=Release -G Ninja
 cmd /k
 goto :EOF
 
@@ -55,6 +57,6 @@ goto :EOF
 
 :make
 
-call cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=%vclocation% -DVCPKG_TARGET_TRIPLET=x64-windows-static -DCMAKE_BUILD_TYPE=Release -G Ninja
+call cmake -B build -S . -DVCPKG_TARGET_TRIPLET=x64-windows-static -DCMAKE_BUILD_TYPE=Release -G Ninja
 goto :EOF
 
